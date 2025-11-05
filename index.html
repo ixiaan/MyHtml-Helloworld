@@ -2,16 +2,18 @@
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Todo List</title> 
-    <style media="screen"> 
+    <!-- <style media="screen"> -->
+    <style>  
         body {
             background-image: url('https://www.hlmc.cn/assets/banner4-BHSnO0uw.jpg'); /* 替换为你的图片路径 */
             /* background-size: cover; */
-            h1 {color:#f1f5f1;}
+            h1 {color:#f1f5f1;} 
         .rounded-small {
             width: 100%;
             padding: 12px;
-            display: inline-block;
+            display: block; /* 改为 block 更适合块级交互 */
             border: none;
             border-radius: 10px;
             background-color: #e3f2fd;
@@ -20,13 +22,15 @@
             box-sizing: border-box;
             outline: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
         .rounded-big {
             width: 240px;
             padding: 12px;
             border: none;
             display: flex;
-            flex-direction: column;         /* 横向排列test */
+            flex-direction: column;         /* 横向排列 */
             gap: 4px; 
             border-radius: 10px;
             background-color: #f3e5f5;
@@ -41,17 +45,58 @@
             display: flex;          /* 横向排列 */
             gap: 12px;               /* 列间距，想调就改这里 */
         }
+        .rounded-small:hover {
+        background-color: #bbdefb;
+        }
+
+        .expandable-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease;
+        opacity: 0;
+        background-color: #ffffff;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-top: -10px; /* 可选：让内容紧贴按钮下方 */
+        padding: 0 12px;
+        }
+
+        .expandable-content.show {
+        max-height: 200px; /* 根据内容调整，或使用 JS 动态计算 */
+        opacity: 1;
+        padding: 12px;
+        }
         /* CSS 样式 */ 
     </style>
-    <script> 
-        /* JavaScript 脚本 */ 
-    </script> 
+
 </head>
 <body> 
+
+    
     <h1>日常任务</h1>
+                        <div class="container" style="max-width: 400px; margin: 20px;">
+                        <button class="rounded-small" id="toggleBtn">
+                        点击展开详硕士
+                        </button>
+                        <div class="expandable-content" id="detailPanel">
+                        <p>这里是展开后的小窗口内容。</p>
+                        <p>你可以放任何 HTML：文本、图片、表单等。</p>
+                        <button onclick="document.getElementById('toggleBtn').click()">收起</button>
+                        </div>
+                    </div>
     <div class="row">
         <div class="rounded-big" style="background-color: #0dd3634d;" >
             <h3>Backlog</h3>
+                    <div class="container" style="max-width: 400px; margin: 20px;">
+                        <button class="rounded-small" id="toggleBtn">
+                        点击展开详
+                        </button>
+                        <div class="expandable-content" id="detailPanel">
+                        <p>这里是展开后的小窗口内容。</p>
+                        <p>你可以放任何 HTML：文本、图片、表单等。</p>
+                        <button onclick="document.getElementById('toggleBtn').click()">收起</button>
+                        </div>
+                    </div>
     
             <div class="rounded-small" style="background-color: #0dd3638e;" >
                 <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
@@ -83,6 +128,7 @@
                 <p class="card-description">5. 埋点：全链路增加 User-ID，方便数仓归因<br>
                     DoD：所有新日志带 User-ID、旧数据可回填、BI 看板验证。</p> <!-- 卡片描述 -->
             </div>
+         
         </div>
         <div class="rounded-big" style="background-color: #3780d952;" >
             <h3>Todo</h3>
@@ -167,7 +213,19 @@
         </div>
     </div>
 
-    
+         <script> 
+            const btn = document.getElementById('toggleBtn');
+            const panel = document.getElementById('detailPanel');
+
+            btn.addEventListener('click', () => {
+            panel.classList.toggle('show');
+            // 可选：改变按钮文字
+            btn.textContent = panel.classList.contains('show') 
+                ? '点击收起详情' 
+                : '点击展开详情';
+            });
+                /* JavaScript 脚本 */ 
+        </script> 
 
     
 
