@@ -1,0 +1,176 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Todo List</title> 
+    <style media="screen"> 
+        body {
+            background-image: url('https://www.hlmc.cn/assets/banner4-BHSnO0uw.jpg'); /* 替换为你的图片路径 */
+            /* background-size: cover; */
+            h1 {color:#f1f5f1;}
+        .rounded-small {
+            width: 100%;
+            padding: 12px;
+            display: inline-block;
+            border: none;
+            border-radius: 10px;
+            background-color: #e3f2fd;
+            color: #000;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .rounded-big {
+            width: 240px;
+            padding: 12px;
+            border: none;
+            display: flex;
+            flex-direction: column;         /* 横向排列 */
+            gap: 4px; 
+            border-radius: 10px;
+            background-color: #f3e5f5;
+            color: #000;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            resize: vertical;
+        }
+        .row {
+            display: flex;          /* 横向排列 */
+            gap: 12px;               /* 列间距，想调就改这里 */
+        }
+        /* CSS 样式 */ 
+    </style>
+    <script> 
+        /* JavaScript 脚本 */ 
+    </script> 
+</head>
+<body> 
+    <h1>日常任务</h1>
+    <div class="row">
+        <div class="rounded-big" style="background-color: #0dd3634d;" >
+            <h3>Backlog</h3>
+    
+            <div class="rounded-small" style="background-color: #0dd3638e;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p>1. 技术债：把 Spring Boot 2.7 升级到 3.2（含 Jakarta 包名替换、配置文件调整）<br>
+                    DoD：依赖冲突清零、启动无 WARN、单元测试全过、性能基线差异 <3 %。
+                </p> 
+            </div>
+
+            <div class="rounded-small" style="background-color: #abee2e31;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">2. 性能：订单接口 P99 从 800 ms 降到 400 ms<br>
+                     DoD：压测 1 k QPS/5 min 无错误、CPU 占用 <60 %、GC 次数减少 30 %。</p>
+            </div>
+
+            <div class="rounded-small" style="background-color: #814dab;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">3. 安全：接入 OAuth2 统一登录，废弃自建 JWT 方案<br>
+                    DoD：渗透测试无 High+ 漏洞、老 token 自动失效、文档更新。</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #e17c4d;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">4. 体验：管理后台暗黑模式<br>
+                    DoD：设计稿还原度 ≥95 %、可快捷键切换、localStorage 记住偏好。</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #d861cd;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">5. 埋点：全链路增加 User-ID，方便数仓归因<br>
+                    DoD：所有新日志带 User-ID、旧数据可回填、BI 看板验证。</p> <!-- 卡片描述 -->
+            </div>
+        </div>
+        <div class="rounded-big" style="background-color: #3780d952;" >
+            <h3>Todo</h3>
+            <div class="rounded-small" style="background-color: #0dd363;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #abee2e;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #814dab;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #e17c4d;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #d861cd;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+        </div>
+        <div class="rounded-big" style="background-color: #30a13641;" >
+            <h3>Doing</h3>
+            <div class="rounded-small" style="background-color: #0dd363;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #abee2e;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #814dab;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #e17c4d;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #d861cd;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+        </div>
+        <div class="rounded-big" style="background-color: #bb82ad55;" >
+            <h3>Testing</h3>
+            <div class="rounded-small" style="background-color: #0dd363;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #abee2e;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #814dab;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #e17c4d;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+
+            <div class="rounded-small" style="background-color: #d861cd;" >
+                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
+                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    <!-- HTML 页面内容 -->
+</body> 
+</html>
