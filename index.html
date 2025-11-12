@@ -247,6 +247,12 @@
             document.addEventListener('click', function() {
             clickCount++;
             bar.textContent = `点击次数：${clickCount}`;
+            if (clickCount === 10) {
+            alert("别点了别点了！干嘛呀你？😅");
+            }
+            if (clickCount === 20) {
+            alert("你怎么还在点啊！！🤯");
+            }
             });
         </script> 
 
