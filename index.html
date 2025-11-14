@@ -244,8 +244,12 @@
             const bar = document.getElementById('clickCounterBar');
 
             // 监听整个文档的点击事件
-            document.addEventListener('click', function() {
-            clickCount++;
+            /* document.addEventListener('click', function() {
+            clickCount++;*/
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.rounded-small')) {
+                    clickCount++;
+                         }
             bar.textContent = `点击次数：${clickCount}`;
             if (clickCount === 10) {
             alert("别点了别点了！干嘛呀你？😅");
