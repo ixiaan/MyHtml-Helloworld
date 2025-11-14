@@ -40,6 +40,22 @@
             cursor: pointer;
             transition: background-color 0.2s;
         }
+        /* 可选：展开时加点内边距 */
+        .rounded-small.expanded {
+             background-color: #bbdefb; /* 稍微变色表示激活状态 */
+        }
+        .card-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-description {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #555;
+    /* display: none 由 JS 控制，也可放在这里 */
+}
         .rounded-big {
             width: 240px;
             padding: 12px;
@@ -64,22 +80,6 @@
         background-color: #bbdefb;
         }
 
-        .expandable-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out, opacity 0.3s ease;
-        opacity: 0;
-        background-color: #ffffff;
-        border-radius: 0 0 10px 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        margin-top: -10px; /* 可选：让内容紧贴按钮下方pp */
-        padding: 0 12px;
-        }
-
-        .expandable-content.show {
-        max-height: 200px; /* 根据内容调整，或使用 JS 动态计算 */
-        opacity: 1;
-        padding: 12px;
         }
         /* CSS 样式 */ 
     </style>
@@ -89,147 +89,86 @@
 
     
     <h1></br>日常任务</h1>
-                        <div class="container" style="max-width: 400px; margin: 20px;">
-                        <button class="rounded-small" id="toggleBtn">
-                        这里点开还没弄好
-                        </button>
-                        <div class="expandable-content" id="detailPanel">
-                        <p>这里是展开后的小窗口内容。</p>
-                        <p>你可以放任何 HTML：文本、图片、表单等。</p>
-                        <button onclick="document.getElementById('toggleBtn').click()">收起</button>
-                        </div>
-                    </div>
-    <div class="row">
-        <div class="rounded-big" style="background-color: #0dd3634d;" >
-            <h3>Backlog</h3>
-                    <div class="container" style="max-width: 400px; margin: 20px;">
-                        <button class="rounded-small" id="toggleBtn">
-                        这里更是没有弄好
-                        </button>
-                        <div class="expandable-content" id="detailPanel">
-                        <p>这里是展开后的小窗口内容。</p>
-                        <p>你可以放任何 HTML：文本、图片、表单等。</p>
-                        <button onclick="document.getElementById('toggleBtn').click()">收起</button>
-                        </div>
-                    </div>
     
-            <div class="rounded-small" style="background-color: #0dd3638e;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p>1. 技术债：把 Spring Boot 2.7 升级到 3.2（含 Jakarta 包名替换、配置文件调整）<br>
-                    DoD：依赖冲突清零、启动无 WARN、单元测试全过、性能基线差异 <3 %。
+ 
+    <div class="row">
+        
+        <div class="rounded-big" style="background-color: #0dd3634d;" >
+                <h3>开发</h3>
+            <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                <h4 class="card-title">Spring Boot 升级</h4>
+                <p class="card-description" style="display: none;">
+                    1. 技术债：把 Spring Boot 2.7 升级到 3.2（含 Jakarta 包名替换、配置文件调整）<br>
+                    DoD：依赖冲突清零、启动无 WARN、单元测试全过、性能基线差异 &lt;3 %。
                 </p> 
             </div>
 
-            <div class="rounded-small" style="background-color: #abee2e31;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">2. 性能：订单接口 P99 从 800 ms 降到 400 ms<br>
-                     DoD：压测 1 k QPS/5 min 无错误、CPU 占用 <60 %、GC 次数减少 30 %。</p>
+            <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                <h4 class="card-title">API 安全加固</h4>
+                <p class="card-description" style="display: none;">
+                    1. 为所有公开 API 添加 JWT 鉴权 + 请求频率限制<br>
+                    DoD：Postman 测试覆盖所有路径、OWASP ZAP 扫描无高危漏洞、日志记录完整。
+                </p> 
             </div>
-
-            <div class="rounded-small" style="background-color: #814dab;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">3. 安全：接入 OAuth2 统一登录，废弃自建 JWT 方案<br>
-                    DoD：渗透测试无 High+ 漏洞、老 token 自动失效、文档更新。</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #e17c4d;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">4. 体验：管理后台暗黑模式<br>
-                    DoD：设计稿还原度 ≥95 %、可快捷键切换、localStorage 记住偏好。</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #d861cd;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">5. 埋点：全链路增加 User-ID，方便数仓归因<br>
-                    DoD：所有新日志带 User-ID、旧数据可回填、BI 看板验证。</p> <!-- 卡片描述 -->
-            </div>
-         
         </div>
         <div class="rounded-big" style="background-color: #3780d952;" >
-            <h3>Todo</h3>
-            <div class="rounded-small" style="background-color: #0dd363;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            <h3>运维</h3>
+            <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                <h4 class="card-title">K8s 集群升级</h4>
+                <p class="card-description" style="display: none;">
+                    1. 将生产环境 Kubernetes 从 v1.24 升级至 v1.28<br>
+                    DoD：滚动升级无服务中断、HPA 策略生效、监控告警规则验证通过。
+                </p> 
             </div>
 
-            <div class="rounded-small" style="background-color: #abee2e;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #814dab;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #e17c4d;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #d861cd;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
+            <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                <h4 class="card-title">日志集中化改造</h4>
+                <p class="card-description" style="display: none;">
+                    1. 接入 Loki + Grafana 替代本地日志文件<br>
+                    DoD：所有 Pod 日志可查、保留策略 ≥30 天、关键错误自动告警。
+                </p> 
             </div>
         </div>
         <div class="rounded-big" style="background-color: #30a13641;" >
-            <h3>Doing</h3>
-            <div class="rounded-small" style="background-color: #0dd363;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
+            <h3>测试</h3>
+                <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                    <h4 class="card-title">自动化回归覆盖</h4>
+                    <p class="card-description" style="display: none;">
+                        1. 补充核心业务链路的 Cypress E2E 测试（下单 → 支付 → 通知）<br>
+                        DoD：覆盖率 ≥85%、CI 中稳定运行、失败用例自动截图归档。
+                    </p> 
+                </div>
 
-            <div class="rounded-small" style="background-color: #abee2e;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #814dab;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #e17c4d;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #d861cd;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
+                <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                    <h4 class="card-title">兼容性矩阵验证</h4>
+                    <p class="card-description" style="display: none;">
+                        1. 验证 Web 应用在 Chrome/Firefox/Safari 最新 2 个版本下的功能一致性<br>
+                        DoD：关键页面无布局错乱、表单提交正常、无 JS 报错。
+                    </p> 
+                </div>
         </div>
         <div class="rounded-big" style="background-color: #bb82ad55;" >
-            <h3>Testing</h3>
-            <div class="rounded-small" style="background-color: #0dd363;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
+            <h3>报告</h3>
+                <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                    <h4 class="card-title">用户行为埋点审计</h4>
+                    <p class="card-description" style="display: none;">
+                        1. 梳理并标准化 GA4 与内部 BI 的事件命名规范<br>
+                        DoD：文档发布、历史数据映射完成、新埋点上线并通过校验。
+                    </p> 
+                </div>
 
-            <div class="rounded-small" style="background-color: #abee2e;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #814dab;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #e17c4d;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
-
-            <div class="rounded-small" style="background-color: #d861cd;" >
-                <!--<h4 class="card-title">欢迎使用我们的应用</h4>--> <!-- 卡片标题 -->
-                <p class="card-description">这是一个固定内容的彩色卡片，展示重要信息</p> <!-- 卡片描述 -->
-            </div>
+                <div class="rounded-small toggle-card" style="background-color: #0dd3638e;">
+                    <h4 class="card-title">月度系统健康度报告</h4>
+                    <p class="card-description" style="display: none;">
+                        1. 自动化生成包含可用性、错误率、响应时间、资源利用率的仪表盘<br>
+                        DoD：每月 3 号前邮件发送、支持按团队筛选、数据源可追溯。
+                    </p> 
+                </div>
         </div>
     </div>
 
          <script> 
-            const btn = document.getElementById('toggleBtn');
+            /*const btn = document.getElementById('toggleBtn');
             const panel = document.getElementById('detailPanel');
 
             btn.addEventListener('click', () => {
@@ -238,8 +177,23 @@
             btn.textContent = panel.classList.contains('show') 
                 ? '点击收起详情' 
                 : '点击展开详情';
-            });
+            });*/
+
                 /* JavaScript 脚本 */ 
+                document.querySelectorAll('.rounded-small[data-toggle="card"]').forEach(card => {
+                card.addEventListener('click', function() {
+                    const description = this.querySelector('.card-description');
+                    const isExpanded = description.style.display === 'block';
+
+                    if (isExpanded) {
+                        description.style.display = 'none';
+                        this.classList.remove('expanded');
+                    } else {
+                        description.style.display = 'block';
+                        this.classList.add('expanded');
+                    }
+                });
+            });
             let clickCount = 0;
             const bar = document.getElementById('clickCounterBar');
 
@@ -258,6 +212,18 @@
             alert("你怎么还在点啊！！🤯");
             }
             });
+
+
+            document.querySelectorAll('.toggle-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const desc = this.querySelector('.card-description');
+                if (desc.style.display === 'block') {
+                    desc.style.display = 'none';
+                } else {
+                    desc.style.display = 'block';
+                }
+            });
+        });
         </script> 
 
     
